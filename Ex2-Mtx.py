@@ -1,6 +1,6 @@
 #Shmuel Malikov - 313530537
 
-def isDDM(m, n):
+def isDDM(matrix, n):
     # for each row
     for i in range(0, n):
 
@@ -8,17 +8,17 @@ def isDDM(m, n):
         # sum of each row.
         sum = 0
         for j in range(0, n):
-            sum = sum + abs(m[i][j])
+            sum = sum + abs(matrix[i][j])
 
         # removing the
         # diagonal element.
-        sum = sum - abs(m[i][i])
+        sum = sum - abs(matrix[i][i])
 
         # checking if diagonal
         # element is less than
         # sum of non-diagonal
         # element.
-        if (abs(m[i][i]) < sum):
+        if (abs(matrix[i][i]) < sum):
             return False
 
     return True
@@ -107,13 +107,13 @@ def findGH(matrix, k):
 
     return G, H
 
-def addmatrix(A, B):
+def addmatrix(matrixA, matrixB):
     # Function that receiving two parameters A, B
     # A - Matrix 1
     # B - Matrix 2
     # The function will return the sum of the two matrix
-    return [[A[i][j] + B[i][j] for j in range
-(len(A[0]))] for i in range(len(A))]
+    return [[matrixA[i][j] + matrixB[i][j] for j in range
+(len(matrixA[0]))] for i in range(len(matrixA))]
 
 
 def copy_matrix(matrix):
@@ -142,27 +142,27 @@ def matrix_multiply(matrixA, matrixB):
     return matrixC
 
 
-def transposeMatrix(m):
+def transposeMatrix(matrix):
     # function that receiving matrix as a parameter and doin transpose
     # return the transpose matrix
-    return list(map(list,zip(*m)))
+    return list(map(list, zip(*matrix)))
 
-def getMatrixMinor(m,i,j):
-    return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
+def getMatrixMinor(matrix, i, j):
+    return [row[:j] + row[j+1:] for row in (matrix[:i] + matrix[i + 1:])]
 
-def getMatrixInverse(m):
-    determinant = Determinant(m, 1)
+def getMatrixInverse(matrix):
+    determinant = Determinant(matrix, 1)
     #special case for 2x2 matrix:
-    if len(m) == 2:
-        return [[m[1][1]/determinant, -1*m[0][1]/determinant],
-                [-1*m[1][0]/determinant, m[0][0]/determinant]]
+    if len(matrix) == 2:
+        return [[matrix[1][1] / determinant, -1 * matrix[0][1] / determinant],
+                [-1 * matrix[1][0] / determinant, matrix[0][0] / determinant]]
 
     #find matrix of cofactors
     cofactors = []
-    for r in range(len(m)):
+    for r in range(len(matrix)):
         cofactorRow = []
-        for c in range(len(m)):
-            minor = getMatrixMinor(m,r,c)
+        for c in range(len(matrix)):
+            minor = getMatrixMinor(matrix, r, c)
             cofactorRow.append(((-1)**(r+c)) * Determinant(minor, 1))
         cofactors.append(cofactorRow)
     cofactors = transposeMatrix(cofactors)
