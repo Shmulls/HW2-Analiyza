@@ -1,3 +1,5 @@
+#Shmuel Malikov - 313530537
+
 def isDDM(m, n):
     # for each row
     for i in range(0, n):
@@ -22,6 +24,8 @@ def isDDM(m, n):
     return True
 
 def Determinant(matrix, mul):
+    # Function that calcilates the determinant of matrix that recived
+    # Return : Determinant matrix
     width = len(matrix)
     # Stop Conditions
     if width == 1:
@@ -45,7 +49,8 @@ def Determinant(matrix, mul):
 
 
 def PivotMtx(matrix, vector):
-
+    # This function arranges the matrix so pivot going to be diagonal
+    # The returned value will be the arranged matrix.
     for i in range(len(matrix)):
         max = matrix[i][i]
         flag = i
@@ -66,6 +71,8 @@ def MakeIMatrix(cols, rows):
 
 
 def findLDU(matrix):
+    # This function will calculate L, D and U according to the format we received in the lecture
+    # The returned value will be L, D and U.
     L, D, U = MakeIMatrix(len(matrix), len(matrix)), MakeIMatrix(len(matrix), len(matrix)), MakeIMatrix(len(matrix), len(matrix))
 
     for i in range(len(matrix)):
@@ -81,6 +88,8 @@ def findLDU(matrix):
 
 
 def findGH(matrix, k):
+    # This function will calculate G, H according to the formulas we received in lecture
+    # The returned value will be G and H
     L, D, U = findLDU(matrix)
     H = getMatrixInverse(D)
     if k == "Jacobi":
@@ -99,12 +108,16 @@ def findGH(matrix, k):
     return G, H
 
 def addmatrix(A, B):
-
+    # Function that receiving two parameters A, B
+    # A - Matrix 1
+    # B - Matrix 2
+    # The function will return the sum of the two matrix
     return [[A[i][j] + B[i][j] for j in range
 (len(A[0]))] for i in range(len(A))]
 
 
 def copy_matrix(matrix):
+    # function that recive exsit matrix and copy it, and return new one.
     rows = len(matrix)
     cols = len(matrix[0])
 
@@ -130,6 +143,8 @@ def matrix_multiply(matrixA, matrixB):
 
 
 def transposeMatrix(m):
+    # function that receiving matrix as a parameter and doin transpose
+    # return the transpose matrix
     return list(map(list,zip(*m)))
 
 def getMatrixMinor(m,i,j):
@@ -158,6 +173,10 @@ def getMatrixInverse(m):
 
 
 def JacobiandGausseSeidel(matrix, vector, method):
+    # Function that receiving matrix, vector and method which define the type of calc the user asking
+    # method parameter - "Jacobi" will recive jacobi soultion
+    # method parameter - "GausseSeidel" will recive gausseSeidel soultion
+    # this method using G and H parameters, according to the method they received
     matrix, vector = PivotMtx(matrix, vector)
     count = -1
     numberofint = 1
@@ -187,9 +206,17 @@ def JacobiandGausseSeidel(matrix, vector, method):
 
 
 # Driver Code
+
 matrixA = [[4,2,0],[2,10,4],[0,4,5]]
 vectorB = [[2], [6], [5]]
 
-
-JacobiandGausseSeidel(matrixA, vectorB, "Jacobi")
-JacobiandGausseSeidel(matrixA, vectorB, "GausseSeidel")
+while(True):
+    print("Welcome to EX2 - Jaacobi/Gausse-Seidel")
+    print("Please choose ")
+    selection = input("[1] Jaacobi OR [2] Gausse-Seidel (By pressing other number the program will shutdown.): ")
+    if selection == "1":
+        JacobiandGausseSeidel(matrixA, vectorB, "Jacobi")
+    elif selection == "2":
+        JacobiandGausseSeidel(matrixA, vectorB, "GausseSeidel")
+    else:
+        break
