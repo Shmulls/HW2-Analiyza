@@ -1,6 +1,6 @@
 # Gad Nadjar - ID : 337744155
 # Rudy Haddad - ID : 336351481
-# Tal Vazana - ID : 313454472
+# Shmuel Malikov - ID : 313530537
 import sympy as sp
 import math
 from sympy import lambdify
