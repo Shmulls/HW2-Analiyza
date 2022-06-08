@@ -49,5 +49,5 @@ def SimpsonRule(func, a, b, n):
 #             print("R[{}][{}] = ".format(k, j + 1), (mat[k][j + 1]))
 #     return mat
 
-
-print(SimpsonRule(sp.sin(x), 0, math.pi, 4))
+f = (sp.sin(2 * sp.exp(-2 * x)))/(x**2 + 5*x + 6)
+print(SimpsonRule(f, -0.4, 0.4, 4))
