@@ -1,9 +1,8 @@
 # Gad Nadjar - ID : 337744155
 # Rudy Haddad - ID : 336351481
-# Shmuel Malikov - ID : 313530537
+# Tal Vazana - ID : 313454472
 import sympy as sp
 import math
-from math import e
 from sympy import lambdify
 
 epsilon = 10 ** (-10)
@@ -44,6 +43,7 @@ def Bisection_Method(func, start_point, end_point):
             b = c
         c = (a + b) / 2
         counter += 1
+        print(a-b)
 
     print("number of iteration {}".format(counter))
     return c
@@ -66,6 +66,7 @@ def Newton_Raphson(func, func_tag, start_point, end_point):
         xr = xr_1
         xr_1 = xr - (f(xr) / fn(xr))
         counter += 1
+        print(xr - xr_1)
 
     print("Number Of Iteration {}".format(counter))
     return xr_1
@@ -126,7 +127,8 @@ def transition(func, start_point, end_point, n):
 def main():
     choice = input("\nchoose method for solve :\n1 - Bisection Method\n2 - Newton-Raphson method\n3 - Secant Method\n")
 
-    f = math.sin(2*e**-2*x)/x**2+5*x+6
+    f = (sp.sin(2 * sp.exp(-2 * x)))/(x**2 + 5*x + 6)
+
     start = -1
     end = 2
 
